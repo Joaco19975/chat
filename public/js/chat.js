@@ -1,3 +1,5 @@
+
+
 const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
@@ -7,13 +9,25 @@ const typing = get(".typing");
 const chatStatus = get(".chatStatus");
 
 
+
 msgerForm.addEventListener("submit", event => {
+
   event.preventDefault();
+
 
   const msgText = msgerInput.value;
   if (!msgText) return;
 
-  /* Todo el codigo del envío */
+    axios.post('/message/sent', {
+                message: msgText,
+                chat_id: 1 //PENDIENTE: hacer dinamico
+
+            }).then(resp => {
+                console.log(resp);
+                
+            }).catch(err => {
+                console.log(err);
+            })
 
   msgerInput.value = "";
 
